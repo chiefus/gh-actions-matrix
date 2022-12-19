@@ -17,7 +17,15 @@ jobs:
         with:
           fetch-depth: '0'
       - id: set-matrix
-        run: echo "::set-output name=matrix::[10, 12, 14]"
-      - uses: chiefus/gh-actions-matrix/.github/workflows/target.yml@main
-        with: 
-          accounts: ${{ steps.meta.outputs.matrix }}
+        run: echo "::set-output name=accounts::[10, 12, 14]"
+
+
+  matrix2:
+    needs: matrix
+    runs-on: ubuntu-latest
+    strategy:
+			# This needs to match the first job's name and output parameter
+      matrix: 
+        accounts: ${{fromJSON(needs.matrix.outputs.accounts)}}
+    steps:
+      - run: echo "${{ matrix.account }}"
