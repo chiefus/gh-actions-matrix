@@ -19,7 +19,8 @@ jobs:
         with:
           fetch-depth: '0'
       - id: set-matrix
-        run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
+       # run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
+        run: echo "accounts={\"accounts\":[10, 12, 14]}" >> $GITHUB_OUTPUT
 
 
   matrix2:
