@@ -11,21 +11,21 @@ jobs:
     defaults:
       run:
         shell: bash
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.accounts }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: '0'
       - id: set-matrix
-        run: echo "::set-output name=accounts::[10, 12, 14]"
+        run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
 
 
   matrix2:
     needs: matrix
     runs-on: ubuntu-latest
     strategy:
-			# This needs to match the first job's name and output parameter
-      matrix: 
-        accounts: ${{fromJSON(needs.matrix.outputs.accounts)}}
+      matrix: ${{fromJSON(needs.matrix.outputs.accounts)}}
     steps:
       - run: echo "${{ matrix.account }}"
