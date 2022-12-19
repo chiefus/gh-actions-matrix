@@ -12,7 +12,8 @@ jobs:
       run:
         shell: bash
     outputs:
-      accounts: ${{ steps.set-matrix.outputs.accounts }}
+      ACCOUNTS: ${{ steps.set-accounts.outputs.ACCOUNTS }}
+      FILES: ${{ steps.set-files.outputs.FILES }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,17 +21,17 @@ jobs:
           fetch-depth: '0'
       - id: set-files
        # run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
-        run: echo "files=file1 file2 file3" >> $GITHUB_OUTPUT
+        run: echo "FILES=file1 file2 file3" >> $GITHUB_OUTPUT
       - id: set-accounts
        # run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
-        run: echo "accounts={\"accounts\":[10, 12, 14]}" >> $GITHUB_OUTPUT
+        run: echo "ACCOUNTS={\"accounts\":[10, 12, 14]}" >> $GITHUB_OUTPUT
 
 
   matrix2:
     needs: matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJSON(needs.matrix.outputs.accounts)}}
+      matrix: ${{fromJSON(needs.matrix.outputs.ACCOUNTS)}}
     steps:
       - run: echo "${{ matrix.accounts }}"
 
@@ -39,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for i in $(echo )echo "${{ needs.matrix.outputs.files }}"
+          for i in $(echo )echo "${{ needs.matrix.outputs.FILES }}"
           do
             echo $i
           done
