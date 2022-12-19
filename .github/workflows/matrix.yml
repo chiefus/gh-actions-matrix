@@ -1,0 +1,20 @@
+name: Matrix
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'accounts/**'
+  workflow_dispatch:
+
+jobs:
+  matrix:
+    name: Matrix
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+			# Important: Do not forget the id!
+      - id: set-matrix
+        run: echo "::set-output name=matrix::{\"account\":[10, 12, 14]}"
