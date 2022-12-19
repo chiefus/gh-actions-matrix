@@ -1,0 +1,14 @@
+name: Cleaner
+
+on:
+  workflow_call:
+    inputs:
+      account_id:
+        required: true
+        type: string
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "${{ inputs.account_id }}"
