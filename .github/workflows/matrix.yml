@@ -1,11 +1,8 @@
 name: Matrix
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
-    paths:
-      - 'accounts/**'
-  workflow_dispatch:
 
 jobs:
   matrix:
@@ -15,6 +12,5 @@ jobs:
       run:
         shell: bash
     steps:
-			# Important: Do not forget the id!
       - id: set-matrix
-        run: echo "::set-output name=matrix::{\"account\":[10, 12, 14]}"
+        run: echo "::set-output name=matrix::{\"accounts\":[10, 12, 14]}"
