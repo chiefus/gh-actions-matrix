@@ -12,7 +12,7 @@ jobs:
       run:
         shell: bash
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.accounts }}
+      accounts: ${{ steps.set-matrix.outputs.accounts }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
