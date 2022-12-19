@@ -13,4 +13,7 @@ jobs:
         shell: bash
     steps:
       - id: set-matrix
-        run: echo "::set-output name=matrix::{\"accounts\":[10, 12, 14]}"
+        run: echo "::set-output name=matrix::[10, 12, 14]"
+      - uses: chiefus/gh-actions-matrix/.github/workflows/target.yml@main
+        with: 
+          accounts: ${{ steps.meta.outputs.matrix }}
