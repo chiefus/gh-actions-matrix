@@ -28,4 +28,4 @@ jobs:
     strategy:
       matrix: ${{fromJSON(needs.matrix.outputs.accounts)}}
     steps:
-      - run: echo "${{ matrix.account }}"
+      - run: echo "${{ matrix.accounts }}"
