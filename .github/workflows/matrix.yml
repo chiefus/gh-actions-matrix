@@ -26,7 +26,7 @@ jobs:
        # run: echo "::set-output name=accounts::{\"accounts\":[10, 12, 14]}"
         run: echo "ACCOUNTS={\"accounts\":[10, 12, 14]}" >> $GITHUB_OUTPUT
       - id: set-role
-        run: echo ${{ env.ACTION_AWS_IAM_ROLE }}
+        run: echo ${{ vars.ACTION_AWS_IAM_ROLE }}
 
 
   matrix2:
